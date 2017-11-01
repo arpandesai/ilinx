@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<extraArtwork>
+  <art>
+    <check tag="sourceControlType">
+      <value matchanyof="TUNER,ZTUNER" separator=",">
+        <check tag="channel">
+          <value matchany="yes">
+            <image href="tuner/terrestrial/${channel}.png" />
+          </value>
+        </check>
+      </value>
+      <value match="XM TUNER">
+        <check tag="channel">
+          <value matchany="yes">
+            <image href="tuner/satellite/${channel}.png" />
+          </value>
+        </check>
+      </value>
+      <value match="MediaServer">
+        <check tag="subGenre">
+          <value matchany="yes">
+            <image href="media/${subGenre}.png" />
+          </value>
+        </check>
+        <check tag="genre">
+          <value matchany="yes">
+            <image href="media/${genre}.png" />
+          </value>
+        </check>
+        <image href="media/default.png" />
+      </value>
+    </check>
+  </art>
+</extraArtwork>

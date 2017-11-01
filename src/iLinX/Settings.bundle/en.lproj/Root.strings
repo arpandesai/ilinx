@@ -1,0 +1,9 @@
+﻿/* A single strings file, whose title is specified in your preferences schema. The strings files provide the localized content to display to the user for each of your preferences. */
+
+"0000iLinX" = "iLinX";
+"0001Lock Settings" = "Lock Settings";
+"0002Hide All" = "Hide All";
+"0003Profiles Only" = "Profiles Only";
+"0004Show All" = "Show All";
+"0005Version" = "Version";
+

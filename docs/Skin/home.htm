@@ -1,0 +1,47 @@
+<html xmlns:x="urn:schemas-janustechnology-co-uk:ilinx">
+<head>
+  <!-- meta name="hideNavigationBar" content="yes" /-->
+  <script type="text/javascript" src="iLinX/scripts.js"></script>
+  <script type="text/javascript" src="iLinX/extra.js"></script>
+  <script>
+  iLinX.pageLoaded = function()
+  {
+    iLinX.disableDefaultBehavior();
+    return "V";
+  };
+  iLinX.statusUpdated = function()
+  {
+    var body = document.getElementsByTagName( "body" ).item( 0 );
+    var services = iLinX.status.locations[iLinX.status.locations.currentIndex].services;
+
+    if (services == null || services.length == 0)
+      body.innerHTML = "<p>No services for this location.</p>";
+    else
+    {
+      var innerHTML = "<ul>";
+      var i;
+
+      for (i = 0; i < services.length; ++i)
+      {
+        innerHTML += "<li><x:item index=\"" + i + "\">" + services[i].displayName + "</x:item></li>";
+      }
+      body.innerHTML = innerHTML + "</ul>";
+
+      var links = document.getElementsByTagName( "x:item" );
+      for (i = 0; i < links.length; ++i)
+        links[i].ontouchend = selectService;
+    }
+  };
+  function selectService( evt )
+  {
+    iLinX.selectService( (+this.attributes.getNamedItem( "index" ).value) );
+  }
+  </script>
+  <style>
+    * { -webkit-user-select: none; -webkit-touch-callout: none; }
+  </style>
+</head>
+<body bgcolor="red" text="white" link="white" vlink="white">
+  <p>Refreshing service list...</p>
+</body>
+</html>

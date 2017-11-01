@@ -1,0 +1,54 @@
+<html xmlns:x="urn:schemas-janustechnology-co-uk:ilinx">
+<head>
+  <title>Select Source</title>
+  <meta name="hideNavigationBar" content="yes" />
+  <script type="text/javascript" src="iLinX/scripts.js" />
+  <script type="text/javascript" src="iLinX/extra.js" />
+  <script>
+  iLinX.pageLoaded = function()
+  {
+    iLinX.disableDefaultBehavior();
+    return "S";
+  };
+  iLinX.statusUpdated = function()
+  {
+    var body = document.getElementsByTagName( "body" ).item( 0 );
+    var innerHTML = "<ul>";
+    var sources = iLinX.status.locations[iLinX.status.locations.currentIndex].sources;
+
+    for (var i = 0; i < sources.length; ++i)
+    {
+      if (sources[i].available)
+        innerHTML += "<li><x:item index=\"" + i + "\">" + sources[i].displayName + "</x:item>";
+      else
+        innerHTML += "<li><i>" + sources[i].displayName + "</i>";
+
+      if (i == sources.currentIndex)
+        innerHTML += " (current)";
+      innerHTML += "</li>";
+    }
+    body.innerHTML = innerHTML + "</ul><p><x:close id=\"close\">Done</x:close></p>";
+
+    var links = document.getElementsByTagName( "x:item" );
+    for (i = 0; i < links.length; ++i)
+      links[i].ontouchend = selectSource;
+    document.getElementById( "close" ).ontouchend = closeView;
+  };
+  function selectSource( evt )
+  {
+    iLinX.selectSourceInCurrentLocation( (+this.attributes.getNamedItem( "index" ).value) );
+    iLinX.closeView();
+  }
+  function closeView( evt )
+  {
+    iLinX.closeView();
+  }
+  </script>
+  <style>
+    * { -webkit-user-select: none; -webkit-touch-callout: none; }
+  </style>
+</head>
+<body bgcolor="red" text="white" link="white" vlink="white">
+  <a href="javascript:iLinX.closeView()">Done</a>
+</body>
+</html>

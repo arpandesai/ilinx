@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<extraArtwork>
+  <art>
+    <check tag="sourceControlType">
+      <value matchanyof="TUNER,XM TUNER" separator=",">
+        <check tag="artworkName">
+          <value matchany="yes">
+            <image href="tuner/satellite/${artworkName}.png" />
+          </value>
+          <value matchany="yes">
+            <check tag="channel">
+              <value matchany="yes">
+                <image href="tuner/uk/${channel}.png" />
+              </value>
+            </check>
+          </value>
+        </check>
+      </value>
+      <value match="MediaServer">
+        <check tag="album">
+          <value matchany="yes">
+            <image href="media/${album}.png" />
+          </value>
+        </check>
+      </value>
+    </check>
+  </art>
+</extraArtwork>

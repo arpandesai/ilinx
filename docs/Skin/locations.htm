@@ -1,0 +1,51 @@
+<html xmlns:x="urn:schemas-janustechnology-co-uk:ilinx">
+<head>
+  <title>Select Location</title>
+  <meta name="hideNavigationBar" content="yes" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <script type="text/javascript" src="iLinX/scripts.js"></script>
+  <script type="text/javascript" src="iLinX/extra.js"></script>
+  <script>
+  iLinX.pageLoaded = function()
+  {
+    iLinX.disableDefaultBehavior();
+    return "L";
+  };
+  iLinX.statusUpdated = function()
+  {
+    var body = document.getElementsByTagName( "body" ).item( 0 );
+    var innerHTML = "<ul>";
+
+    for (var i = 0; i < iLinX.status.locations.length; ++i)
+    {
+      innerHTML += "<li><x:item index=\"" + i + "\">" + iLinX.status.locations[i].displayName + "</x:item>";
+      if (i == iLinX.status.locations.currentIndex)
+        innerHTML += " (current)";
+      innerHTML += "</li>";
+    }
+
+    body.innerHTML = innerHTML + "</ul><p><x:close id=\"close\">Done</x:close></p>";
+
+    var links = document.getElementsByTagName( "x:item" );
+    for (i = 0; i < links.length; ++i)
+      links[i].ontouchend = selectLocation;
+    document.getElementById( "close" ).ontouchend = closeView;
+  };
+  function selectLocation( evt )
+  {
+    iLinX.selectLocation( (+this.attributes.getNamedItem( "index" ).value) );
+    iLinX.closeView();
+  }
+  function closeView( evt )
+  {
+    iLinX.closeView();
+  }
+  </script>
+  <style>
+    * { -webkit-user-select: none; -webkit-touch-callout: none; }
+  </style>
+</head>
+<body bgcolor="red" text="white" link="white" vlink="white">
+  <a href="javascript:iLinX.closeView()">Done</a>
+</body>
+</html>

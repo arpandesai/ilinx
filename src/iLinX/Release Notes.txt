@@ -1,0 +1,790 @@
+Release notes
+-------------
+v1.22/v1.12 (111)
+Fix problems with rotation not working on iOS6 (HD only at 
+present).  Ignore NetStreams when it sends a current source as a
+perm id (behaviour change in StreamNet firmware 02.90.11).
+
+v1.21/v1.11 (110)
+Set NOSIGPIPE on all socket connections to prevent the app from
+crashing if the far end terminates the connection unexpectedly.
+
+v1.20/v1.10 (109)
+Fixed problem with presets not appearing on IR-only tuners that
+are defined on an MLA4000.
+
+v1.19/v1.9 (108)
+Stopped possibility of having multiple skin threads.  Pop up
+warning when skin configuration changes.
+
+v1.18/v1.9 (107)
+Added ability to log from skin scripts.  Fixed various changes from
+v1.17 that stopped iLinX HD from building.  Fixed add tuner preset
+not showing any presets in the list.  Added hack to get round old
+Naimnet.lua driver not sending the correct URL for new NSxx v1.7a
+thumbnails.  Restore room selection list popping up on start-up if
+current room unavailable and skin not enabled.
+
+v1.17/v1.8 (106)
+Fixed not being able to use CHANGE_SCREEN home from pop-up.  Added
+timestamp check on downloaded skin so that the skin is only updated
+if the date has changed.
+
+v1.17/v1.8 (105)
+Added "passive" registration for renderers to allow skin to receive
+renderer data without sending REGISTER to each of them (which
+overloaded the SpeakerLinX and caused it to crash).
+
+v1.17/v1.8 (104)
+First beta release of iLinX with Harewood modifications for skin
+support.
+
+v1.16/v1.8 (103)
+Removed iOS4-specific call that was causing iLinX to crash on
+iOS3.x.
+
+v1.15/v1.7 (102)
+Fixed handling of zTuner.
+
+v1.15/v1.7 (101)
+Respect the ordering of rooms in a static room menu.  Added VTuner
+support. Improved discovery to find a usable renderer, not just the
+first that responds.  Improve reporting of connection problems.
+Discovery debug logging left in release version.  Added a Stay
+Connected option and persistent wi-fi attribute to reduce number
+of disconnects.  Improve detection of sorted/unsorted lists when
+browsing media.  Close the Settings view when refresh is selected.
+Improve handling of messages to slow devices.  Improve layout of
+browse lists with images.  Modify ARQ work-around so that when
+Dealer Setup incorrectly identifies Naim servers as ARQ we don't
+hang.  Fix crash on unlicensed timers service.  Fix problem caused
+by iOS 5 fixing the bug that stopped viewWillAppear etc. being
+called for some sub-views.  Fix problem of room renderer being
+accessed after it has been released.  Fix some memory leaks.
+
+v1.14/v1.6 (100)
+Fix problem with NNP always being reset to first available input.
+Prevent iLinX crashing on some occasions on a system with an
+unlicensed Timers service.
+
+v1.13/v1.5 (99)
+Remove extraneous # from NNP input select command.  Fix iLinX HD
+timers display so that time value for single events is not
+affected by daylight saving time.
+
+v1.13/v1.5 (98)
+iLinX
+Make Now Playing button on media server browse list only visible
+if the media server is actually in a state to play something.
+
+iLinX HD
+Fixed: 
+  Incorrect number of buttons on the local source view.
+  Aprilaire HVAC controls.
+  Volume slider for Timers sleep alarms.
+  Problem with some items in the browse by album art listing
+    sometimes being blank.
+  Play All and Shuffle sometimes appearing briefly at the bottom
+    of the browse lists.
+  Preset lists on Tuner sometimes being blank or incomplete.
+
+Both
+Add support for buttons on the HVAC screen that are operation only
+i.e. no feedback light.  Handle popup messages from DigiLinX. Fix
+international HVAC picking up the wrong status text when fan icon
+not showing.  Ensure HVAC buttons are shown even if status values
+have not yet been sent for them.  Fix problem with Timers list
+requests being off by one, limiting the number of timers to 16.
+Updates to comms code to ensure that link to DigiLinX is dropped
+cleanly when the app goes to sleep.  Fix crash caused by OS timers
+becoming invalid due to the OS now handling them differently. Move
+GUI data fetching to a background task to avoid holding up app
+and view initialisation, which causes the OS to time the app out
+and kill it.  Improve iTunes handling, making it faster and
+reducing the number of reconnects required.  Auto-select first
+available input on an NNP amplifier if it has powered up with an
+invalid (disabled) input selected.
+
+v1.12/v1.4 (97)
+Fixed "feature" of album art view that lead to extra rows of
+blank albums when there were too few rows to fill the screen.
+Changed the behaviour of the alternative views button so that
+any view can now be selected and the current setting is retained
+but if the view type isn't valid for the current data, the icon
+is greyed and the list downgrades itself to the next lowest
+available list type.
+
+v1.12/v1.4 (96)
+Added an alternative discovery mechanism based on broadcast pings
+to get round the latest version of iOS4.3 using IGMP v3, which is
+not understood by NetStreams switches.  Removed a possible
+inifinite recursion from NLServiceTimers.
+
+v1.11/v1.3 (95)
+Fixed malfunctioning buttons on iLinX security view and added a
+confirmation dialog when the emergency buttons are pressed.
+Increased the timeout for fetching GUI definition file to cope with
+a slow response when accessing systems remotely.  Faster recovery
+after wake up from sleep.  Fixed bug where on change of profile a 
+connection was still retained to the previous system.  Removed some
+memory leaks.
+
+v1.10/v1.2 (94)
+Revised Sensible Heat HVAC to improve response time.  Fixed iLinX HD
+problem with presets where a race condition could cause a hang.
+Improved iTunes handling.  Fixed crash on iLinX OS3.x on entry to
+the Settings/Profiles view.
+
+v1.9/v1.1 (93)
+Fixed a couple of crashes (or at least worked around them).
+
+v1.9/v1.1 (92)
+Discovery fixed.  Added refresh buttons for iLinX HD.  Default to
+showing Settings button rather than hiding it.  Compare just the
+first letters of titles in browse lists to check whether they are
+alphabetically sorted (as that's all that matters really).  Fixed
+incorrect NIBs for satellite tuner and IR only device screens on
+iLinX HD.  Added support for the new IPD100 iDock.  Fixed missing
+presets on media servers for iLinX HD.  Fixed hidden police button
+on iLinX.  Fixed crash in iLinX HD on changing rooms or profiles.
+Get audio controls reflecting feedback/no feedback immediately.
+Change to remove retaining unnecessary registrations for source and
+renderer information.  Add short explanation of how to change
+configuration in the Settings view.
+
+v1.8 (91) iLinX Beta Debug only
+Added extra logging in the discovery routines to try to pin down why
+discovery is not working.
+
+v1.8/v1.0 (90)
+Fix configuration SettingsAndValue cell to impose a minimum size for
+the value width so that they don't turn into zero width fields!
+Changed discovery to be exactly as Dealer Setup, i.e. wait 3 seconds
+after joining multicast group, send both broadcast first and then
+multicast messages and repeat 3 times at intervals of 10 seconds.
+
+v1.8/v1.0 (89)
+Add a delay before sending discovery broadcast to see if that affects
+the operation of discovery.  Fix resolved URLs in configuration
+profiles so that they are reset if the underlying URLs are changed.
+
+v1.8/v1.0 (88)
+Another debug build with Nick Whittome's new device ids.
+
+v1.8/v1.0 (87)
+Fixed crash caused by receiving a DigiLinX message with unexpected
+content.  Ensure multicast address and port are initialised correctly
+when creating a new profile from old configuration data.  Fix incorrect
+margins in configuration table views (plus stop them being rotatable on
+iPhone).  Debug version with logging to try to pin down why discovery
+is not always working successfully.
+
+v1.8/v1.0 (86)
+Fixed a problem with iTunes library pairing failing due to iLinX
+closing the pairing request connection too quickly.
+
+v1.7/v1.0 (85)
+Revised branding to link but differentiate iLinX and iLinX HD.
+Decided to keep iLinX and iLinX HD version numbers separate (with
+the build number giving us the link between the two).  So, as
+skins has been disabled in iLinX for now, we are going with version
+1.7 for iLinX and 1.0 for iLinX HD.
+
+v2.0 (84)
+Made disabled buttons on No Source page lighter to make them more
+obviously disabled.  Remove unnecessary debug output.  Fix iTunes
+request object to avoid a possible problem of it being used after
+deallocation.  Added extra refresh calls to tuner presets list after
+add preset and remove all presets to ensure that the list is updated
+correctly.  Changed iTunes session object to make the request base
+address use an IPv4 address to work round problem of IPv6 
+misconfiguration causing cover art not to be found.
+
+v2.0 (83)
+Fixed problem of button page being too big on initial load.  Add in
+missing highlighted 8 image.  Tidied up security interface and got
+security working.  Fixed behaviour of dynamic buttons for favourites,
+generic, security and HVAC.  Made lighting buttons default to always
+showing a state indicator.  Added new macro running image.  Fix crash
+on favourites and generic pages caused by odd/low number of buttons
+per page.  Fix camera presets not being changed on camera change.
+Got source button and source view titles showing the title of the
+current source.  Fix highlighted images for local source buttons plus
+offset the text to account for on/off light on all buttons with
+indicators.  Changed no source view to use buttons rather than a list.
+Other internal code tidying and debug output.
+
+v2.0 (82)
+Fixed a couple of graphical anomalies in the iPad media server
+views.  Fixed crash on pre-iOS4 devices caused by registration for
+iOS4 notifications.
+
+v2.0 (81)
+Full Beta iPad version.  Almost final graphics (just missing the
+macro execution popup).
+
+Fixed XM tuner root menu to reduce number of options.  Fixed a
+couple of null pointer problems introduced by iOS4.  Worked round
+bar button tinting problem introduced by iOS4.  Reworked code to
+eliminate analyser "errors".  Fixed various problems in iTunes
+support that could cause hangs or crashes on occasion.  Added
+handling for changes in some iTunes types (Audiobooks, Rentals
+etc.) in latest version of iTunes.  Added clean tidy up and
+restart of networking activity on background/foreground transition
+in iOS4.  Added handling of settings that are changed while the
+application is in the background.  New start-up graphic for the
+iPod version, plus remove the gradual fade of the start-up graphic
+as no longer appropriate.  SL251 renderer now supported.
+
+v2.0 (80)
+Limited Beta iPad version.  Some more services implemented.
+
+v2.0 (79)
+Limited Beta iPad version.
+
+Moved settings mostly within the application and added the possibility
+for multiple profiles.
+
+Fixed problem with buttons on Nav bar not being allowed to be
+defined in NIB files.  Artwork URL now allows a relative URL to be
+specified, which will attempt to find the artwork on the device itself.
+
+v1.6 (78)
+Added TLA250 to the list of supported amplifier types.
+
+v1.6 (77)
+Problem with A/V Off not switching off all devices fixed.  Updated
+to handle new ZTuner type as added in Dealer Setup 2.50.
+
+v1.5 (76)
+Problem with playing iTunes playlists fixed.  "Now Playing" button
+on browse screen only shown if there is an active play queue.  If on
+the now playing screen and the play queue becomes inactive,
+transitions back to browse screen.  "n of m" and "Next track" fields
+are now hidden if they have no information to display.  Fixed
+various problems with request objects for the iTunes server being
+freed before they should. Fixed problem with it being impossible to
+set the timer type to Alarm.  Fixed problem of the day being set
+wrong for timer alarms when the local timezone is not GMT.
+
+v1.5 (75)
+Fix problem of settings view sometimes having overwritten 
+sections.  Don't display the MultiRoom controls if MultiRoom has
+been disabled in Dealer Setup.
+
+v1.5 (74)
+More icons for Apple-specific root menu items.  Small attempt to
+make cover art loading quicker.
+
+vl.5 (73)
+Retry getting thumbnail art if the server response is 204 "No
+Content".  This is because the server loses thumbnail art after a
+reboot and then responds to the next request with "No Content"
+while preparing the thumbnail in the background.  A subsequent
+request may then succeed.
+
+v1.5 (72)
+Request thumbnail cover art at the same size as Apple Remote in
+order to try to fix problem of server returning "No Content" for
+thumbnails straight after reboot.
+
+v1.5 (71)
+Use own cache rather than system cache for thumbnails in the media
+server browse menu as, for some reason, the system cache doesn't
+work on some systems.
+
+v1.5 (70)
+Protective code added to prevent crashes caused by delayed socket
+callbacks trying to use now deleted objects.  iTunes pairing revised
+to ensure unique pairing ids and to only advertise the pairing
+service when there is a library pairing needed.  Now detects when
+the library has deleted its pairing and notifies the user to pair
+again.
+
+v1.5 (69)
+Media player metadata view now updates correctly when track changes.
+Message shown while loading the iTunes root menu (so it isn't blank).
+"browseMenu" setting in gui.xml ignored for iTunes (it always has a
+browse menu).  Unneeded call to iTunes library on initial connection
+removed.
+
+v1.5 (68)
+Genre display problem fixed.  Browse with cover art now working more
+smoothly.  Debouncing of track positioning added to avoid excessive
+sending of positioning requests.  Placeholder thumbnail added for
+items with no cover art.  Cleaned up the repeat icon.
+
+v1.5 (67)
+Repeat and track positioning now available for iTunes libraries. Added
+cover art and secondary text for some iTunes browse menu items. iTunes
+licensing now implemented.  Attempted to fix the problem of genre
+sometimes not being displayed.  More helpful text messages now shown
+while trying to connect.  Fixed problem where the item type name was
+wrong on some lists for the "no entry" view (e.g. saying "No songs" on
+the movies page).
+
+v1.5 (66)
+Pairing name is now iLinX: <device name> both before and after pairing.
+Unavailable user interface features (track number, next track) are now
+hidden for iTunes servers.  All standard root menu entries are now
+shown (e.g. Audiobooks, Movies etc.) even if the server does not return
+them in its initial listing.  Browsing and playing of movies, music
+videos and TV shows should now work.  iPort device now detected and
+a much longer retry timeout used in order to avoid overload.
+
+v1.5 (65)
+On pairing, iLinX now appears to iTunes as iLinX: <device name>.  Fixed
+problem with first item in a list misbehaving when selected (shuffle or
+play track).  Fixed problem that caused iLinX, when Favorites is defined
+as the home screen, to go to the root menu rather than the Favorites
+screen in some circumstances.
+
+v1.5 (64)
+Fixed bug that caused both iLinX and iTunes to crash when pairing.
+
+v1.5 (63)
+Fixed iLinX always appearing as "Administrator's iPod" in Apple TV
+Remote list.
+
+v1.5 (62)
+Fixed album tracks appearing in alphabetical order in some circumstances.
+Better checking of session status to avoid trying to contact the iTunes 
+server when not yet connected.  Correct handling of Genius mixes.  Items
+with no children now appear in the menu (to be consistent with Apple
+Remote).  Message shown on browse initialisation to show that it is
+waiting for connection.  If this message persists, check that the server
+is running and that you have paired iLinX on that device with it as a
+remote.
+
+v1.5 (61)
+Reasonable implementation of iTunes support.  All known special lists have
+been implemented though TV Shows, Movies and Music Videos have not been
+tested.  Pointless options on single entry menus have now been removed.
+Support for gzip encoding of results data added, which speeds up fetching
+of lists.  Still doesn't do the following features of iPhone Remote:
+ - any playlist editing
+ - any data other than title
+ - any special commands for special things (e.g. Genius, iTunes DJ)
+ - jumping down a further level of hierarchy when a list has only one item
+Also TBD: Remove unused items from Now Playing screen (next track and
+n of m count) and add in iTunes specific controls (setting play position
+and repeat status).
+
+v1.5 (60)
+Much of iTunes browsing implemented.  Known problems: Most special lists
+(e.g. Podcasts, Music Videos etc.) are still to do; "Shuffle" option 
+shouldn't be shown on a playlists with only one item (as it doesn't work);
+probably some optimisation needed (e.g. on fetching list of all songs).
+
+v1.5 (59)
+Hard code all possible source screen types to cope with case where iTunes
+attached to a MediaLinX has a type in the project file that is otherwise
+unused (and thus cannot be identified as a source screen type).  Some more
+iTunes browsing, but still not complete.
+
+v1.5 (58)
+Fixed problem with connection to iTunes being deleted before it was finished
+with.  A bit more (but not much) of an implementation of iTunes browsing.
+
+v1.5 (57)
+Fixed bug where prefix not removed on location button.  Revised iTunes control
+with multiple connections to (we hope) remove current problems of losing
+contact and upsetting the Apple TV state.  Stub implementation of iTunes
+browse view.
+
+v1.5 (56)
+Added special handling of __X__ prefixes and suffixes on NetStreams names so
+that the prefix and suffix is removed for display purposes.
+
+v1.5 (55)
+Intermediate demo release of integrated iTunes/Apple TV control.  Now playing
+screen only at present; no browsing and no iTunes-specific stuff (e.g.
+repeat).
+
+v1.4 (54)
+Cancel MENU_LIST {{sources}} that was left running after leaving the "No
+Source" view.  Fix problem of MENU_LIST {{media}} (and other sub-menus)
+continuing to be requested after media server browse view exited.  Set retry
+of STATUS on unresponsive lighting sub-services to 30 seconds (from 5) to try
+to avoid overloading systems with very large numbers of lighting controls.
+Added belt-and-braces code that appears to have cured a mysterious screen
+freeze that was occurring when sources were selected.  Fix problem of
+favorites screen being incorrectly selected when some rooms have favorites as
+the home screen and others do not.  Fix problem with cool set point not being
+adjustable in Aprilaire cool mode.
+
+v1.3 (53)
+Restore original camera image fetch timeout for App Store release.
+
+v1.3 (52)
+Reduce all camera command timeouts to 0.2 seconds, for further tests with the
+camera lockup problem.
+
+v1.3 (51)
+Add "random" parameter to webcam commands and reduce the timeout on commands
+for which we have no interest in the response to see if this solves a problem
+with Cameras locking up for about 15 seconds if a command (pan, tilt etc.) is
+used.
+
+v1.3 (50)
+Available sources now shown as a list within the "No Source" view so that the
+user isn't required to press the Source button to select a new source.
+CHANGE_SCREEN macro to "home" now works correctly and CHANGE_SCREEN macros to
+other currently unsupported screens (Location, selectSource, multi-room) are
+now ignored rather than switching to the "unsupported service" view.  Fixed
+incorrect format string that might cause a crash in the case of being unable
+to connect to a SpeakerLinX.
+
+v1.3 (49)
+Removed automatic pop-up of "Select Source" menu when No Source screen shown.
+This is because, due to delays in reporting the selection of a source, the
+No Source screen was being shown momentarily before the correct screen was
+switched to, but by that time the select source popup had appeared.
+Fixed problem where title bar disappeared on occasion when switching sources
+(particularly after a source selection via a favorite).  Added "Running
+Macro..." alert that is shown when the macro contains a delay (or delays)
+before the instruction to change user interface screen.	 Fixed bug in
+Secant security that might cause a crash if the user changes to the bypass
+zones page before the driver sends its first status report.  Changed all
+security screens to show feedback text from the security systems.  Note
+that this means that the password entry is no longer cloaked.  Fixed
+media server browse lists so that the section titles don't disappear on
+occasion.  Fixed problem where DVR channel presets were not being listed.
+Fixed bug where last room used was not necessarily correctly recorded on
+exiting the application.  Added a network activity indicator while waiting
+for the timers list to be filled for the first time.
+
+v1.2 (48)
+Ignore disabled menus within Sources, Zones and Locations screens (as opposed
+to treating them as zero length menus).  Look for the actual iLinX timer
+service name when identifying timer macros rather than the fixed string
+"iLinX Timers".  Fix missing title icon on metadata flip screen for media
+server.  Cope with trailing space between /> and }} in status reports.
+
+V1.2 (47)
+Fix crash when iLinX Timers service does not send a licence string.
+
+V1.2 (46)
+Timers licensing added.  Recognition of the iLinX Timers service name is now
+case and space insensitive.  Timers edit mode automatically ends if the last
+timer is deleted.  Add timer button is not made visible until the timers
+service has been contacted and verified as being licensed.  Record kept of
+earliest version of iLinX installed (from 1.1 onwards) for possible future
+use (e.g. to get round problems of charging people again if we ever change
+to version 2.x).
+
+V1.2 (45)
+Timers re-enabled for beta release (no licensing as yet).
+
+V1.1 (44)
+Fix crash that happens when nothing is discovered on first startup and then
+user selects Home.  Fix other problem with question marks in More browse list!
+Disable timers support for App Store release pending sorting out licensing.
+
+V1.1 (43)
+Change to internal product id format: please delete all previous copies of
+iLinX Demo and iLinX Beta before installing this release!  Timer items no
+longer flash blue when tapped in normal (i.e. not edit) mode.  Temporary
+question mark icons appearing in More browse list fixed.  Volume control not
+appearing on OS3.0 fixed.  Network activity indicator not stopping on exit
+from browse list fixed.  Problem with A-Z bar on browse list being incorrectly
+abbreviated on OS3.0 worked around (by removing X).
+
+V1.1 (42)
+No change to functionality.  Build to add extra beta test device id.
+
+V1.1 (41)
+No change to functionality.  Build to add extra beta test device ids.
+
+V1.1 (40)
+Fix crash on editing a timer with a macro that has an associated room.
+
+V1.1 (39)
+Ensure any changes to user preferences are saved before quitting.  Add
+ability to use macros with NS_CUR_ROOM in timers.  Change create timer
+message to use {{ }} as {{}} didn't work either!  Don't allow a timer to be
+saved until all fields are initialised.  Make timers default to enabled.
+Change so that timers can only be edited in edit mode.  Fix problem with date
+being shown wrongly when in a negative time zone and not at all when 12 hour
+time mode chosen.  Make pop-up selection lists (location, source, camera,
+zone) dismiss automatically as soon as a choice is made rather than having to
+press the Done button.  Explanatory warning message now shown if iLinX fails
+to discover any devices.
+
+V1.1 (38)
+Create timer message now sends empty timer id as {{}} to get round parsing
+problem in the service.
+
+V1.1 (37)
+Fix problem where "no feedback" status of an amplifier in one room could be
+incorrectly picked up by an amplifier in another.  Complete timers
+implementation.  Demo version available from this version onwards.
+
+V1.1 (36)
+Fix race condition where messages were sent before the socket connection to
+The NetStreams device was completely initialised, resulting in them being
+lost.  Add support for IR only amplifiers (i.e. no volume or mute feedback
+available).  Change to use "ACTIVE ON" instead of "AMP ON" to ensure the
+amp is switched on and only send if current amp state is off (to avoid
+problems where the only IR command available is a power toggle).  Partial
+implementation of iLinX Timers service.
+
+V1.0 (35)
+Cope with current source not being in source static menu. Move Display
+buttons to head of settings page.  Make Display buttons (and TH100 audio
+buttons) two per row to match the usual grouping of pairs of commands (e.g.
+vol up/vol down).  Correct macros for Panorama and TheaterLinX.  Better
+handling of change from direct to auto-discovery.  Improvement to further
+reduce overlapping of menu list requests (which can confuse NetLinX
+devices).  Correct handling of sorted/unsorted lists for new MediaServer
+driver.  Nicer handling of lists with no entries.  Title bar macro button.
+
+V1.0 (34)
+Bug fixed where re-clicking on the currently selected tab bar icon in media
+server browse could, in some circumstances and on some OS versions, lock up
+the application. Changed shuffle commands sent to lower case so that it
+should work with current and earlier versions of the Naim media server lua
+driver.  Alerts changed to action sheets for clear all presets and rescan
+channels in tuner to conform to Apple human interface guidelines. Set point
+temperature unit labels moved onto selection bar, also for Apple HIG.
+
+V1.0 (33)
+Added Devices icon for Naim media server browsing.  Fixed bizarre behaviour
+of playing all tracks on a Naim server when browsing started if the server
+has no playlists.
+
+V1.0 (32)
+Fixed crash caused by misinterpreting a message in Latin1 encoding as being
+in UTF8.  Added icons for iPort top level items (Song, Artist, Album, Genre,
+Composer, Playlist).  Fixed bug where switching to a room with Favourites
+defined as the home screen left the audio controls controlling the previous
+room.  Fixed SL250 and SN1000 so that the equaliser slider ranges are -50 to
+50 (previously different parts of the code thought different things!)  Fixed
+colour of presets buttons in SL250 settings.  Fixed mis-specified flags in
+tuner view.  These caused random side-effects in tuner metadata; mostly
+unnoticeable except for a tendency for FM radio text to disappear.  Changed
+browse list pre-fetching to also cope with scrolling upwards.  Changed
+source listing to fetch sources in blocks of 8 to avoid problem of a fetch
+of all sources at once not working in a heavily loaded system with many
+sources.  Fixed so preset list selection handling so that
+MENU_SEL {{presets>n}} is always sent rather than the contents of the
+"command" field, if present.  Not sure why it was doing this in the first
+place; a mis-interpretation of a packet trace perhaps?  Cancel any pending
+menu list requests if we leave the menu for which they are needed.  Only
+show Genre in meta data if Genre and Sub-Genre are identical.  Further
+changes to browse list handling to fix some problems introduced by the A-Z
+bar fixes in v1.0 (31).  Default cover art on the media server now has a
+different version for Naim servers.
+
+V1.0 (31)
+Preventative coding to ensure debug logging is not in release builds. Fixed
+problem of A-Z bar appearing in browse lists that shouldn't have it (e.g.
+Tuner presets).  Fixed problem of browse list fetches being repeatedly sent,
+even after they have been successfully received once.  Fixed XM/Sirius being
+shown as MONO in the tuner.  Added presets list to DVR view.  Wired up the
+majority of the buttons in the CD/DVD/DVR views that were not generating key
+presses.  Changed source list handling so that unavailable sources are shown
+but greyed out rather than being hidden.  This should avoid confusion and
+stop the source list from changing frequently.  Improved browse list
+handling again so that A-Z titles are shown as you scroll past them using
+the A-Z bar.  Better handling of instances when A-Z bar is used to select a
+letter for which there are no entries in the list.
+
+V1.0 (30)
+Fixed crash on local source and any other source that potentially has list
+data (e.g. presets) but returns a list length zero.  Fixed HVAC2 so that
+module button feedback works.  Changed handling of the A-Z bar on browsing
+to reduce traffic by only sending messages as required.  Changed CD/DVD/PVR
+so that the source name rather than type is shown as the title.  Fixed
+Server icon in Naim media server browse tab bar.
+ 
+V1.0 (29)
+Slight tidy-up of the application icon and a change to Release build 
+configuration.  Set to version 1.0 in preparation for App Store release.
+
+V0.1 (27)
+Fix crash when going past first/last favourites page.  Fix crash caused by
+low memory situation in browse list. Fix crash caused by re-checking browse
+tab bar icons.  Add in missing new artwork on Naim local source buttons.
+Fix PVR screen yellow button alignment.  Work around problem with light
+Indicator status not being reported on first pass when a large number of
+lights are defined.  Handle the possibility of custom buttons on the
+security screen not having an indicator.  Handle problem with Xiva server
+returning "Genre" rather than "Genres".  Fix incorrect tab bar icon for
+unknown items.  Fix media server shuffle button not working on Naim.
+
+V0.1 (26)
+New artwork.  Fixed (really, this time!) the volume slider so that it
+doesn't update while being operated.  Added CD, DVD and PVR support
+(one-way only at present).  Changed the "No Source" view so that it
+explains how to select a source.  Changed the opening splash screen to show
+the authors logos, the StreamNet Connected logo and the current version
+number.  Possibly fixed problem of HVAC set points being set to minimum
+when Save pressed after the values have been changed on some other device
+(to be tested).  Changed browse list handling to cancel any pending browse
+requests for items beyond the end of the list once the list length is
+known.  Completed implementation of security views.
+
+V0.1 (25)
+Improvements to the tuner interface: fixed retained text on keypad; improved
+look of keypad; fixed problem of not being able to see keypresses on the
+control bar; improved handling of status reports from Arcam T32 tuner.
+Moved tuner art out of the application; this change also supports additional
+user-defined media server cover art.  Fixed audio settings sliders so that
+they do not update in response to status notifications while being changed
+by the user.  Modified the default icon order settings for media server
+browsing so that All Songs is not the first.  Security views partially
+implemented.
+
+V0.1 (24)
+Switch to fading style tab bar icons in the browse list.  Add HVAC support.
+Fix bug in generic/lights code where page views not ignoring events linked
+to buttons not on their page.  Switch over to using darker buttons on
+lights, generic and tuner keypad views in anticipation of new artwork to
+come.
+
+V0.1 (23)
+Favourites as home page now works.  Removed unnecessary Band and Stereo
+controls from XM only tuner view.  Added icon for Generic services on
+the home page.  Added support for Generic services.
+
+V0.1 (22)
+Added favourites support.  Improvements to XM Tuner handling. Changed so
+That entering a value on the tuner keypad switches back to the main view.
+Fixed problem with SL250 sliders disappearing.  Version number now
+displayed in Apple format.
+
+V0.1.21.0
+Fixed crash on selecting XM Tuner as a source.  Added version number display
+on the settings screen.
+
+V0.1.20.0
+Fixed crash caused by trying to join a multiroom group in a room that has no
+zones defined.
+
+V0.1.19.0
+Fixed problem with editing of tab bar item order not causing the
+Corresponding browse views to also be reordered.  Hopefully fixed problem of
+Shuffle button status not reflecting true shuffle status.
+
+V0.1.18.0
+Back to PNG station artwork, with transparency.  Changed tuner backdrops to
+contrast better with black logos.  Added Panorama screen support.  Fixed bug
+in use of tuner keypad view.  Ensured no spurious data shown from
+no-feedback tuners.
+
+V0.1.17.0
+Fixed problem with NNP preset button feedback and switched to JPG artwork to
+reduce size.
+
+V0.1.16.0
+Completed station logo art for tuner, though the art itself needs to be
+finalised. Added home option on the location list.  Added icons for the home
+view.  Fixed problem with NNP local source causing a hang.  Fixed problem
+with music server in a stuck state causing source selection list to not
+exit.
+
+V0.1.15.0
+Completed caption setting on IR-only tuners.  Added support for input
+selection on NNP amplifiers. Improved aesthetics of lights page buttons.
+Stopped possibility of registering for more than one source at once.
+Added feature of jumping directly to the "Now Playing" screen if something
+is already playing.  Improved handling of channel refresh so that it is no
+longer possible to select things from the browse screen during a refresh and
+so that it automatically navigates to the now playing screen to show the
+refresh update messages.  Uninitialised tuner presets are now disabled and
+marked as uninitialised.
+
+V0.1.14.0
+Send heartbeat every second to see if this solves problem with TCP packets
+not being acknowledged.
+
+V0.1.13.0
+Further improvements to Tuner view.  Should have addressed all issues
+reported so far.  Has added metadata display; save preset; clear all
+presets; refresh stations.  Still to do: station logo art; caption setting
+on IR-only tuners; more testing.
+
+V0.1.12.0
+Tuner source view added, but incomplete.  Still to do: station logo art;
+metadata display; save preset; clear all presets; refresh stations; caption
+setting on IR-only tuners, plus small UI tweaks and full testing.
+
+V0.1.11.0
+Specific audio settings now supported for NNP, SL220, SL250, SL254,
+SL9250-CS, SN1000, SN1001, TH100 and VL (i.e. same as GUI 2.35).
+Display settings added.
+Local source view added.
+
+V0.1.10.0
+Timeout on media server list responses is now 10 seconds.
+Shuffle command now sent as SHUFFLE (toggle) rather than SHUFFLE ON or
+SHUFFLE OFF.
+Initial loading screenshot changed to read iLinX rather than NetStreams.
+Added support for initial direct connection to a NetStreams device in
+addition to discovery.
+Removed spurious sending of various REGISTER OFF messages on start up.
+
+V0.1.9.0
+Fixed memory retain/release bug in the NLRenderer multi-room code.
+Some cosmetic changes to A/V settings view.
+
+V0.1.8.0
+Changed over to iLinX product name, including new icons.
+Added MultiRoom support.
+Added "home room" for defining the Location menu for the iPod.
+Small cosmetic changes to lights page buttons.
+
+V0.1.7.0
+Changes to support Imerge XiVA and AudioReQuest media servers.
+Lights feedback corrected.
+
+V0.1.6.0
+Camera view now revised to be more consistent and to provide all features in
+horizontal as well as vertical mode.  Tapping images now switches from 1 to
+4 camera mode and vice-versa.  Controls are now brought up by a new button
+on the left of the slideshow bar.  The 1/4 camera toggle button has also
+been moved to the slideshow bar to balance it.
+
+Fixed problem with media server browse view stopping scrolling when new data
+arrived.  Also other small changes to generally improve the speed and
+smoothness of media server browsing.
+
+V0.1.5.0
+Over-freeing of memory that could sometimes cause an access fault has been
+fixed.
+
+Camera changes:
+
+Rotating horizontal brings up a full-screen version of the current view.
+
+1-camera/4-camera view toggle button top right.  Also tapping a view in
+4-camera switches to 1-camera for that camera and tapping top right on the
+1-camera view switches to 4-camera.
+
+Tapping elsewhere on the 1-camera view brings up the controls overlay.  This
+business of tapping in different areas doing different things without any
+indication that this is so is a "bad thing" and so will probably not stay
+that way.  However without this, at the moment there is no way to switch
+back to 4-camera view while horizontal.
+
+Media server browsing:
+
+Much better prioritisation of data fetching and handling of the index bar,
+improving the overall experience.
+
+V0.1.4.0
+Fixed problem with being unable to handle static source menus for a room
+(causing a blank screen when source selected).
+
+V0.1.3.0
+Demo version for Integrated Systems Europe 2009.  Basic features working for
+Lights, Cameras and Media Server source.
+
+V0.1.2.0
+Source selection and basic Media Server source browsing working.
+
+V0.1.1.0
+Basic demo that can discover rooms and then present placeholder images to
+show what the full product might look like.
+

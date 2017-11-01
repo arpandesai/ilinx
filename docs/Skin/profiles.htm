@@ -1,0 +1,49 @@
+<html xmlns:x="urn:schemas-janustechnology-co-uk:ilinx">
+<head>
+  <!-- meta name="hideNavigationBar" content="yes" / -->
+  <script type="text/javascript" src="iLinX/scripts.js"></script>
+  <script type="text/javascript" src="iLinX/extra.js"></script>
+  <script>
+  iLinX.pageLoaded = function()
+  {
+    iLinX.disableDefaultBehavior();
+    return "P";
+  };
+  iLinX.statusUpdated = function()
+  {
+    var body = document.getElementsByTagName( "body" ).item( 0 );
+    var innerHTML = "<ul>";
+
+    for (var i = 0; i < iLinX.status.profiles.length; ++i)
+    {
+      innerHTML += "<li><x:item index=\"" + i + "\">" + iLinX.status.profiles[i].displayName + "</x:item>";
+
+      if (i == iLinX.status.profiles.currentIndex)
+        innerHTML += " (current)";
+      innerHTML += "</li>";
+    }
+    body.innerHTML = innerHTML + "</ul><p><x:close id=\"close\">Done</x:close></p>";
+
+    var links = document.getElementsByTagName( "x:item" );
+    for (i = 0; i < links.length; ++i)
+      links[i].ontouchend = selectProfile;
+    document.getElementById( "close" ).ontouchend = closeView;
+  };
+  function selectProfile( evt )
+  {
+    iLinX.selectProfile( (+this.attributes.getNamedItem( "index" ).value) );
+    iLinX.closeView();
+  }
+  function closeView( evt )
+  {
+    iLinX.closeView();
+  }
+  </script>
+  <style>
+    * { -webkit-user-select: none; -webkit-touch-callout: none; }
+  </style>
+</head>
+<body bgcolor="red" text="white" link="white" vlink="white">
+  <a href="javascript:iLinX.closeView()">Done 1</a>
+</body>
+</html>

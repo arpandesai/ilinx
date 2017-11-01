@@ -1,0 +1,54 @@
+<html xmlns:x="urn:schemas-janustechnology-co-uk:ilinx">
+<head>
+  <meta name="hideToolBar" content="yes" />
+  <meta name="hideAudioControls" content="no" />
+  <script type="text/javascript" src="iLinX/scripts.js" />
+  <script type="text/javascript" src="iLinX/extra.js" />
+  <script>
+  var favorites = null;
+
+  iLinX.pageLoaded = function()
+  {
+    iLinX.disableDefaultBehavior();
+    return "f";
+  };
+  iLinX.statusUpdated = function()
+  {
+    var body = document.getElementsByTagName( "body" ).item( 0 );
+    var services = iLinX.status.locations[iLinX.status.locations.currentIndex].services;
+    
+    if (services == null || services.favoritesIndex >= services.length)
+      favorites = null;
+    else
+      favorites = services[services.favoritesIndex].favorites;
+
+    if (favorites == null || favorites.length == 0)
+      body.innerHTML = "<p>No favorites for this location.</p>";
+    else
+    {
+      var innerHTML = "<ul>";
+
+      for (var i = 0; i < favorites.length; ++i)
+        innerHTML += "<li><x:item index=\"" + i + "\">" + favorites[i].display + "</x:item></li>";
+
+      body.innerHTML = innerHTML + "</ul>";
+
+      var links = document.getElementsByTagName( "x:item" );
+      for (i = 0; i < links.length; ++i)
+        links[i].ontouchend = runFavorite;
+    }
+  };
+  function runFavorite( evt )
+  {
+    if (favorites != null)
+      iLinX.runMacroInCurrentLocation( favorites[(+this.attributes.getNamedItem( "index" ).value)].macro );
+  }
+  </script>
+  <style>
+    * { -webkit-user-select: none; -webkit-touch-callout: none; }
+  </style>
+</head>
+<body bgcolor="red" text="white" link="white" vlink="white">
+  <p>Refreshing favorites...</p>
+</body>
+</html>
