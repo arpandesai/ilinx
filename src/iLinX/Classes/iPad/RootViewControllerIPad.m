@@ -150,7 +150,7 @@ static NSString * const kServiceKey = @"Service";
     _uiMessageHandler = [[GUIMessageHandler alloc] init];
 
   _sideBarTitleBar.backgroundColor = [UIColor grayColor];
-  self.view.backgroundColor = [UIColor blackColor];
+  self.view.backgroundColor = [UIColor whiteColor];
   [_toolbarSettingsButton retain];
   _multiroomMessage = [_multiroomMessageLabel.text retain];
 

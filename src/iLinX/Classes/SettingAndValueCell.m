@@ -39,14 +39,14 @@ editableDetailField = _valueEdit;
     self.selectionStyle = UITableViewCellSelectionStyleBlue;
     self.accessoryType = UITableViewCellAccessoryNone;
 
-    _nameLabel = [[UILabel alloc] initWithFrame: CGRectMake( MARGIN, 0, NAME_WIDTH, table.rowHeight )];
+    _nameLabel = [[UILabel alloc] initWithFrame: CGRectMake( MARGIN, 0, NAME_WIDTH, 50 )];
     _nameLabel.font = [UIFont boldSystemFontOfSize: [UIFont labelFontSize]];
     _nameLabel.backgroundColor = [UIColor clearColor];
     _nameLabel.lineBreakMode = UILineBreakModeTailTruncation;
     _nameLabel.autoresizingMask = UIViewAutoresizingFlexibleRightMargin;
     [self.contentView addSubview: _nameLabel];
     
-    _valueLabel = [[UILabel alloc] initWithFrame: CGRectMake( NAME_WIDTH + (MARGIN * 2), 0, dataWidth, table.rowHeight )];
+    _valueLabel = [[UILabel alloc] initWithFrame: CGRectMake( NAME_WIDTH + (MARGIN * 2), 0, dataWidth, 50 )];
     _valueLabel.font = [UIFont systemFontOfSize: [UIFont labelFontSize]];
     _valueLabel.backgroundColor = [UIColor clearColor];
     _valueLabel.lineBreakMode = UILineBreakModeMiddleTruncation;
@@ -54,7 +54,7 @@ editableDetailField = _valueEdit;
     _valueLabel.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
     [self.contentView addSubview: _valueLabel];
     
-    _valueEdit = [[UITextField alloc] initWithFrame: CGRectMake( NAME_WIDTH + (MARGIN * 2), 0, dataWidth, table.rowHeight )];
+    _valueEdit = [[UITextField alloc] initWithFrame: CGRectMake( NAME_WIDTH + (MARGIN * 2), 0, dataWidth, 50 )];
     _valueEdit.font = [UIFont systemFontOfSize: [UIFont labelFontSize]];
     _valueEdit.text = @"Temp writing";
     [_valueEdit sizeToFit];
